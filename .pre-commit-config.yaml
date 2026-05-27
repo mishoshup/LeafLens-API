@@ -9,12 +9,17 @@ repos:
         args: [--fix, --exit-non-zero-on-fix]
       - id: ruff-format
 
-  # ── Commit-msg: conventional commits ──────────────────────────────────
+  # ── Commit-msg: conventional commits with scope enforcement ───────────
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v4.0.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
+        args: [
+          --force-scope,
+          --scopes, "backend,auth,api,db,ghs,rpc,ws,docker,ci,deps,config,tests,middleware",
+          --strict,
+        ]
 
   # ── Pre-commit: misc checks ──────────────────────────────────────────
   - repo: https://github.com/pre-commit/pre-commit-hooks
